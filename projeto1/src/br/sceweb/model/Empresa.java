@@ -34,16 +34,28 @@ public class Empresa {
 		return nomeDaEmpresa;
 	}
 
-	public void setNomeDaEmpresa(String nomeDaEmpresa) {
-		this.nomeDaEmpresa = nomeDaEmpresa;
+	public String setNomeDaEmpresa(String nomeDaEmpresa) {
+		String msg = "";
+		if(isNomeValido(nomeDaEmpresa) == true) {
+			this.nomeDaEmpresa = nomeDaEmpresa;
+		} else {
+			msg = "Nome não pode estar em branco.";
+		}
+		return msg;
 	}
 
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
+	public String setNomeFantasia(String nomeFantasia) {
+		String msg = "";
+		if(isNomeFantasiaValido(nomeFantasia) == true) {
+			this.nomeFantasia = nomeFantasia;
+		} else {
+			msg = "Nome fantasia não pode estar em branco.";
+		}
+		return msg;
 	}
 
 	public String getEndereco() {
@@ -58,8 +70,14 @@ public class Empresa {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public String setTelefone(String telefone) {
+		String msg = "";
+		if(isTelefoneValido(telefone) == true) {
+			this.telefone = telefone;
+		} else {
+			msg = "Telefone não pode estar em branco.";
+		}
+		return msg;
 	}
 	/*
 	 * valida o cnpj
@@ -118,6 +136,36 @@ public class Empresa {
 			erro.printStackTrace();
 	        return(false);
 	    }
+	}
+	
+	public boolean isNomeValido(String nomeRecebido) {
+		boolean valido = true;
+		
+		if(nomeRecebido.trim().length() == 0) {
+			valido = false;
+		}
+		
+		return valido;
+	}
+	
+	public boolean isTelefoneValido(String telefoneRecebido) {
+		boolean valido = true;
+		
+		if(telefoneRecebido.trim().length() == 0) {
+			valido = false;
+		}
+		
+		return valido;
+	}
+	
+	public boolean isNomeFantasiaValido(String nomeRecebido) {
+		boolean valido = true;
+		
+		if(nomeRecebido.trim().length() == 0) {
+			valido = false;
+		}
+		
+		return valido;
 	}
 
 }

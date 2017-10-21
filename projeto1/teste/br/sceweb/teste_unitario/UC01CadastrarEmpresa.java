@@ -56,6 +56,9 @@ public class UC01CadastrarEmpresa {
 	public void CT02UC01FBCadastra_cnpj_invalido() {
 		empresaDAO = new EmpresaDAO(configuraDB);
 		assertEquals("CNPJ invalido.",empresa.setCnpj("89424"));
+		
+		empresaDAO = new EmpresaDAO(configuraDB);
+		assertEquals("CNPJ invalido.",empresa.setCnpj("11111111111111"));
 	}
 	@Test
 	public void CT03UC01FBCadastra_cnpj_ja_cadastrado() {
@@ -65,8 +68,53 @@ public class UC01CadastrarEmpresa {
 		
 	}
 	
+	@Test
+	public void CT04UC01FBCadastra_nome_valido() {
+		empresaDAO = new EmpresaDAO(configuraDB);
+		empresaDAO.adiciona(empresa);
+		assertEquals(0,empresaDAO.adiciona(empresa));
+		
+	}
+	
+	@Test
+	public void CT05UC01FBCadastra_nome_invalido() {
+		empresaDAO = new EmpresaDAO(configuraDB);
+		assertEquals("Nome não pode estar em branco.", empresa.setNomeDaEmpresa(""));
+		
+	}
+	
+	@Test
+	public void CT06UC01FBCadastra_telefone_valido() {
+		empresaDAO = new EmpresaDAO(configuraDB);
+		empresaDAO.adiciona(empresa);
+		assertEquals(0,empresaDAO.adiciona(empresa));
+		
+	}
+	
+	@Test
+	public void CT07UC01FBCadastra_telefone_invalido() {
+		empresaDAO = new EmpresaDAO(configuraDB);
+		assertEquals("Telefone não pode estar em branco.", empresa.setTelefone(""));
+		
+	}
+	
+	@Test
+	public void CT08UC01FBCadastra_nomeFantasia_valido() {
+		empresaDAO = new EmpresaDAO(configuraDB);
+		empresaDAO.adiciona(empresa);
+		assertEquals(0,empresaDAO.adiciona(empresa));
+		
+	}
+	
+	@Test
+	public void CT09UC01FBCadastra_nomeFantasia_invalido() {
+		empresaDAO = new EmpresaDAO(configuraDB);
+		assertEquals("Nome fantasia não pode estar em branco.", empresa.setNomeFantasia(""));
+		
+	}
+	
 	@After
-	public void tearDownAfterClass() throws Exception {
+	public void tearDown() throws Exception {
 		empresaDAO.exclui("89424232000180");
 	}
 }
